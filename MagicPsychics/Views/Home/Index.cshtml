@@ -1,0 +1,66 @@
+﻿@model MagicalPsychics.Models.ViewTestPsyhic
+
+@{
+    ViewBag.Title = "Тестирование экстрасенсов";
+}
+
+<h2>Тестирование экстрасенсов</h2>
+
+<table border="1">
+    <tr align="center">
+        <td>
+            <div style="padding: 10px;">
+                <h3>
+                    Экстрасенсы
+
+                </h3>
+            </div>
+        </td>
+        <td>
+            <div style="padding: 10px;">
+                <h3>
+                    Тест
+                </h3>
+            </div>
+        </td>
+        <td>
+            <div style="padding: 10px;">
+                <h3>
+                    Пользователь
+                </h3>
+            </div>
+        </td>
+
+    </tr>
+    <tr>
+        <td style="vertical-align:top;">
+            <div id="Psyhic" name="Psyhic">
+                @Html.Partial("PartialPsyhic")
+            </div>
+        </td>
+        <td>
+            <div id="Puzzle" name="Puzzle">
+                @Html.Partial("PartialPuzzle")
+            </div>
+        </td>
+        <td style="vertical-align:top;">
+            <div id="PuzzleHistory" name="PuzzleHistory">
+                @Html.Partial("PartialPuzzleHistory")
+            </div>
+        </td>
+    </tr>
+
+</table>
+
+<style type="text/css">
+</style>
+
+@section Scripts {
+    <script type="text/javascript">
+        function GetToken() {
+            var token = '@Html.AntiForgeryToken()';
+            token = $(token).val();
+            return token;
+    }
+    </script>
+}

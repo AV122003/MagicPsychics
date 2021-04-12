@@ -1,0 +1,51 @@
+﻿@model MagicalPsychics.Models.ViewTestPsyhic
+
+<div style="padding:5px;">
+        @{
+            string txtButton = (!Model.WaitPuzzle ? "Ок" : "Загадал");
+            string waitPuzzle = (Model.WaitPuzzle ? "true" : "false");
+            if (!Model.WaitPuzzle)
+            {
+                int i = 0;
+                foreach (var p in Model.PsychicList.Where(o => o.Guess != 0))
+                {
+                    i++;
+                    <div class="ava">
+                        <img style='width:10em; height:10em; border:solid' src="@Url.Content(p.Photo)" />
+                        <br /><br />
+                        <p style="font-size:12px;">@p.Name: я знаю, это @p.Guess!!!</p>
+                    </div>
+                    if (i % 2 == 0)
+                    {
+                        <br />;
+                    }
+                }
+
+                <div style="text-align: center">
+                    <div class="editor-label">
+                        Введите правильный ответ
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.User.Puzzle)
+                    </div>
+                </div>
+
+            }
+            else
+            {
+                <div style="text-align: center">
+                    <div class="editor-label">
+                        Загадайте двухзначное число
+                    </div>
+                </div>
+            }
+
+            <div style="text-align: center">
+                <button id='ButtonPuzzle' name='ButtonPuzzle' onclick="MakePuzzle(@waitPuzzle)" style="margin: 10px;">
+                    @txtButton
+                </button>
+            </div>
+
+            <h4 name="puzzleError" id="puzzleError" style="text-align: center; color:red; display: none" >Введите двузначное число!</h4>
+        }
+</div>

@@ -1,0 +1,42 @@
+﻿@model MagicalPsychics.Models.ViewTestPsyhic
+
+<div style="padding:5px; overflow-y:auto;">
+    @{
+        int i = 0;
+        foreach (var p in Model.PsychicList)
+        {
+            i++;
+            <div class="ava">
+                    <img style='width:10em; height:10em; border:solid' src="@Url.Content(p.Photo)" />
+
+                    <table style="display:inline; vertical-align:top;">
+                            <tr>
+                                <td style="font-size:12px;">
+                                    Догадки
+                                </td>
+                            </tr>
+                            @foreach (var h in @p.GuessHistory)
+                            {
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td style='@(h.Right ? "color:red;" : "")'>
+                                        @h.Value.ToString()
+                                    </td>
+                                    <td style='@(h.Right ? "color:red;" : "")'>
+                                        @(h.Right ? "+" : "-")
+                                    </td>
+                                </tr>
+                            }
+                    </table>
+
+
+                <br/><br/>
+                <p style="font-size:12px;">@p.Name. &nbsp;Достоверность:@p.Reliability%</p>
+            </div>
+            if (i % 2 == 0)
+            {
+            <br />;
+            }
+         }
+    }
+</div>

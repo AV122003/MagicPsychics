@@ -1,0 +1,31 @@
+﻿@model MagicalPsychics.Models.ViewTestPsyhic
+
+<div style="padding:5px;">
+    @{
+        <div class="ava">
+            <img style='width:10em; height:10em; border:solid' src="@Url.Content(Model.User.Photo)" />
+
+            <table style="display:inline; vertical-align:top;">
+                <tr>
+                    <td style="font-size:12px;">
+                        Загадки
+                    </td>
+                </tr>
+                @foreach (var p in Model.User.PuzzleHistory)
+                {
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>
+                            @p.ToString()
+                        </td>
+                    </tr>
+                }
+            </table>
+
+            <br /><br />
+            <p style="font-size:12px;">@Model.User.Name</p>
+        </div>
+
+     }
+</div>
